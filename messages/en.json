@@ -1,0 +1,63 @@
+{
+  "site": {
+    "title": "Global War Daily",
+    "description": "Tracking daily conflicts worldwide, making history happen in real-time"
+  },
+  "nav": {
+    "home": "Global Overview",
+    "ukraine": "Russia-Ukraine Conflict",
+    "middleEast": "Palestine-Israel Conflict",
+    "usIran": "US-Israel-Iran Conflict"
+  },
+  "stats": {
+    "eventsTotal": "Total Events",
+    "fatalitiesTotal": "Total Deaths",
+    "civilianFatalities": "Civilian Deaths",
+    "militaryFatalities": "Military Deaths",
+    "hotRegion": "Hotspot",
+    "noData": "No data",
+    "cumulativeStats": "Cumulative Stats",
+    "sinceWarStart": "Since War Start",
+    "searchDate": "Search Date",
+    "selectDate": "Select Date",
+    "totalEvents": "Total Events",
+    "totalDeaths": "Total Deaths",
+    "civilianDeaths": "Civilian Deaths",
+    "militaryDeaths": "Military Deaths"
+  },
+  "tabs": {
+    "events": "Events List",
+    "map": "Map View",
+    "trend": "Trend Analysis"
+  },
+  "eventTypes": {
+    "battle": "Battle",
+    "aerial_strike": "Airstrike",
+    "explosion": "Explosion",
+    "drone_strike": "Drone Strike",
+    "missile_attack": "Missile Attack",
+    "civilian_casualties": "Civilian Casualties",
+    "naval_blockade": "Naval Blockade",
+    "naval_clash": "Naval Clash",
+    "remote_violence": "Remote Violence",
+    "protest": "Protest",
+    "riot": "Riot",
+    "strategic_development": "Strategic Event"
+  },
+  "regions": {
+    "ukraine": "Russia-Ukraine Conflict Daily",
+    "middleEast": "Palestine-Israel Conflict Daily",
+    "usIran": "US-Israel-Iran Conflict Daily"
+  },
+  "footer": {
+    "sources": "Sources: GDELT Project, ACLED, Manual Entry",
+    "warning": "This site is for informational purposes only. Casualty data may differ from actual figures"
+  },
+  "ui": {
+    "loading": "Loading...",
+    "error": "Load Failed",
+    "retry": "Retry",
+    "deaths": "Deaths",
+    "trend7days": "7-Day Trend"
+  }
+}

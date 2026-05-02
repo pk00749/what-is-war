@@ -1,0 +1,63 @@
+{
+  "site": {
+    "title": "روزانه جنگ جهانی",
+    "description": "پیگیری درگیری‌های روزانه در سراسر جهان"
+  },
+  "nav": {
+    "home": "نمای کلی",
+    "ukraine": "روسیه-اوکراین درگیری",
+    "middleEast": "فلسطین-اسرائیل درگیری",
+    "usIran": "آمریکا-اسرائیل-ایران درگیری"
+  },
+  "stats": {
+    "eventsTotal": "کل رویدادها",
+    "fatalitiesTotal": "کل کشتگان",
+    "civilianFatalities": "کشتگان غیرنظامی",
+    "militaryFatalities": "کشتگان نظامی",
+    "hotRegion": "منطقه داغ",
+    "noData": "بدون داده",
+    "cumulativeStats": "آمار انباشته",
+    "sinceWarStart": "از آغاز جنگ",
+    "searchDate": "جستجوی تاریخ",
+    "selectDate": "انتخاب تاریخ",
+    "totalEvents": "کل رویدادها",
+    "totalDeaths": "کل کشتگان",
+    "civilianDeaths": "کشتگان غیرنظامی",
+    "militaryDeaths": "کشتگان نظامی"
+  },
+  "tabs": {
+    "events": "لیست رویدادها",
+    "map": "نمای نقشه",
+    "trend": "تحلیل روند"
+  },
+  "eventTypes": {
+    "battle": "نبرد",
+    "aerial_strike": "حمله هوایی",
+    "explosion": "انفجار",
+    "drone_strike": "حمله پهپاد",
+    "missile_attack": "حمله موشکی",
+    "civilian_casualties": "کشتگان غیرنظامی",
+    "naval_blockade": "محاصره دریایی",
+    "naval_clash": "نبرد دریایی",
+    "remote_violence": "حمله از راه دور",
+    "protest": "اعتراض",
+    "riot": "شورش",
+    "strategic_development": "رویداد راهبردی"
+  },
+  "regions": {
+    "ukraine": "روسیه-اوکراین درگیری",
+    "middleEast": "فلسطین-اسرائیل درگیری",
+    "usIran": "آمریکا-اسرائیل-ایران درگیری"
+  },
+  "footer": {
+    "sources": "منابع: GDELT Project, ACLED",
+    "warning": "این سایت فقط برای اطلاعات است"
+  },
+  "ui": {
+    "loading": "بارگذاری...",
+    "error": "خطا در بارگذاری",
+    "retry": "تلاش مجدد",
+    "deaths": "کشتگان",
+    "trend7days": "روند ۷ روزه"
+  }
+}

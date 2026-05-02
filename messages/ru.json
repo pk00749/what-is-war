@@ -1,0 +1,63 @@
+{
+  "site": {
+    "title": "Дневник мировой войны",
+    "description": "Отслеживание ежедневных конфликтов по всему миру"
+  },
+  "nav": {
+    "home": "Глобальный обзор",
+    "ukraine": "Россия-Украина конфликт",
+    "middleEast": "Палестина-Израиль конфликт",
+    "usIran": "США-Израиль-Иран конфликт"
+  },
+  "stats": {
+    "eventsTotal": "Всего событий",
+    "fatalitiesTotal": "Всего погибших",
+    "civilianFatalities": "Жертвы среди мирных",
+    "militaryFatalities": "Военные потери",
+    "hotRegion": "Горячая точка",
+    "noData": "Нет данных",
+    "cumulativeStats": "Накопительная статистика",
+    "sinceWarStart": "С начала войны",
+    "searchDate": "Поиск даты",
+    "selectDate": "Выбрать дату",
+    "totalEvents": "Всего событий",
+    "totalDeaths": "Всего погибших",
+    "civilianDeaths": "Погибшие мирные",
+    "militaryDeaths": "Погибшие военные"
+  },
+  "tabs": {
+    "events": "Список событий",
+    "map": "Карта",
+    "trend": "Тренды"
+  },
+  "eventTypes": {
+    "battle": "Бой",
+    "aerial_strike": "Авиаудар",
+    "explosion": "Взрыв",
+    "drone_strike": "Удар дрона",
+    "missile_attack": "Ракетная атака",
+    "civilian_casualties": "Жертвы среди мирных",
+    "naval_blockade": "Морская блокада",
+    "naval_clash": "Морской бой",
+    "remote_violence": "Дистанционное нападение",
+    "protest": "Протест",
+    "riot": "Беспорядки",
+    "strategic_development": "Стратегическое событие"
+  },
+  "regions": {
+    "ukraine": "Россия-Украина конфликт",
+    "middleEast": "Палестина-Израиль конфликт",
+    "usIran": "США-Израиль-Иран конфликт"
+  },
+  "footer": {
+    "sources": "Источники: GDELT Project, ACLED",
+    "warning": "Данные могут отличаться от реальных"
+  },
+  "ui": {
+    "loading": "Загрузка...",
+    "error": "Ошибка загрузки",
+    "retry": "Повторить",
+    "deaths": "Погибших",
+    "trend7days": "Тренд за 7 дней"
+  }
+}

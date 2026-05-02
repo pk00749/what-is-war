@@ -1,0 +1,63 @@
+{
+  "site": {
+    "title": "全球戰爭日報",
+    "description": "記錄全球每天戰爭情況的網站，讓歷史'即時發生'"
+  },
+  "nav": {
+    "home": "全球概覽",
+    "ukraine": "俄烏衝突",
+    "middleEast": "巴以衝突",
+    "usIran": "美以伊衝突"
+  },
+  "stats": {
+    "eventsTotal": "事件總數",
+    "fatalitiesTotal": "總死亡",
+    "civilianFatalities": "平民死亡",
+    "militaryFatalities": "軍人死亡",
+    "hotRegion": "最熱地區",
+    "noData": "暫無數據",
+    "cumulativeStats": "累計統計",
+    "sinceWarStart": "開戰至今",
+    "searchDate": "查詢日期",
+    "selectDate": "選擇日期",
+    "totalEvents": "總事件",
+    "totalDeaths": "總死亡",
+    "civilianDeaths": "平民死亡",
+    "militaryDeaths": "軍人死亡"
+  },
+  "tabs": {
+    "events": "事件列表",
+    "map": "地圖視圖",
+    "trend": "趨勢分析"
+  },
+  "eventTypes": {
+    "battle": "戰鬥",
+    "aerial_strike": "空襲",
+    "explosion": "爆炸",
+    "drone_strike": "無人機",
+    "missile_attack": "導彈",
+    "civilian_casualties": "平民傷亡",
+    "naval_blockade": "海上封鎖",
+    "naval_clash": "海戰",
+    "remote_violence": "遠程火力",
+    "protest": "抗議",
+    "riot": "騷亂",
+    "strategic_development": "戰略事件"
+  },
+  "regions": {
+    "ukraine": "俄烏衝突日報",
+    "middleEast": "巴以衝突日報",
+    "usIran": "美以伊衝突日報"
+  },
+  "footer": {
+    "sources": "數據來源：GDELT Project, ACLED, 人工錄入",
+    "warning": "本網站僅用於信息展示，傷亡數據可能與實際不符"
+  },
+  "ui": {
+    "loading": "載入中...",
+    "error": "載入失敗",
+    "retry": "重試",
+    "deaths": "死亡",
+    "trend7days": "近7天趨勢"
+  }
+}

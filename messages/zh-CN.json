@@ -1,0 +1,63 @@
+{
+  "site": {
+    "title": "全球战争日报",
+    "description": "记录全球每天战争情况的网站，让历史'实时发生'"
+  },
+  "nav": {
+    "home": "全球概览",
+    "ukraine": "俄乌冲突",
+    "middleEast": "巴以冲突",
+    "usIran": "美以伊冲突"
+  },
+  "stats": {
+    "eventsTotal": "事件总数",
+    "fatalitiesTotal": "总死亡",
+    "civilianFatalities": "平民死亡",
+    "militaryFatalities": "军人死亡",
+    "hotRegion": "最热地区",
+    "noData": "暂无数据",
+    "cumulativeStats": "累计统计",
+    "sinceWarStart": "开战至今",
+    "searchDate": "查询日期",
+    "selectDate": "选择日期",
+    "totalEvents": "总事件",
+    "totalDeaths": "总死亡",
+    "civilianDeaths": "平民死亡",
+    "militaryDeaths": "军人死亡"
+  },
+  "tabs": {
+    "events": "事件列表",
+    "map": "地图视图",
+    "trend": "趋势分析"
+  },
+  "eventTypes": {
+    "battle": "战斗",
+    "aerial_strike": "空袭",
+    "explosion": "爆炸",
+    "drone_strike": "无人机",
+    "missile_attack": "导弹",
+    "civilian_casualties": "平民伤亡",
+    "naval_blockade": "海上封锁",
+    "naval_clash": "海战",
+    "remote_violence": "远程火力",
+    "protest": "抗议",
+    "riot": "骚乱",
+    "strategic_development": "战略事件"
+  },
+  "regions": {
+    "ukraine": "俄乌冲突日报",
+    "middleEast": "巴以冲突日报",
+    "usIran": "美以伊冲突日报"
+  },
+  "footer": {
+    "sources": "数据来源：GDELT Project, ACLED, 人工录入",
+    "warning": "本网站仅用于信息展示，伤亡数据可能与实际不符"
+  },
+  "ui": {
+    "loading": "加载中...",
+    "error": "加载失败",
+    "retry": "重试",
+    "deaths": "死亡",
+    "trend7days": "近7天趋势"
+  }
+}
