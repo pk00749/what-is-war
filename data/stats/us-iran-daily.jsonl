@@ -1,0 +1,2 @@
+{"date": "2026-05-01", "region": "us-iran", "events_total": 0, "events_by_type": {}, "fatalities_total": 0, "fatalities_civilians": 0, "fatalities_military": 0, "hottest_locations": [], "trending_topics": [], "last_updated": "2026-05-01T12:00:00Z"}
+{"date": "2026-04-30", "region": "us-iran", "events_total": 1, "events_by_type": {"aerial_strike": 1}, "fatalities_total": 80, "fatalities_civilians": 0, "fatalities_military": 80, "hottest_locations": [{"place": "伊朗核设施", "count": 1}], "trending_topics": ["核设施打击计划", "高超声速导弹", "伊朗威胁报复"], "last_updated": "2026-04-30T23:59:00Z"}
