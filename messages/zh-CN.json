@@ -16,11 +16,19 @@
     "events": "事件"
   },
   "timeline": {
-    "title": "冲突时间轴"
+    "title": "冲突时间轴",
+    "zoomDay": "按小时",
+    "zoomWeek": "按周",
+    "zoomMonth": "按月",
+    "timepoints": "个时间点"
   },
   "humanitarian": {
     "title": "人道主义追踪",
-    "crisis_warning": "人道主义危机警告"
+    "crisis_warning": "人道主义危机警告",
+    "infrastructure": "基础设施损毁",
+    "incidents": "事件数",
+    "regionalDistribution": "区域分布",
+    "crisis_message": "平民死亡比例超过30%，表明可能存在针对平民的袭击或附带伤害。"
   },
   "stats": {
     "eventsTotal": "事件总数",

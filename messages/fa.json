@@ -16,11 +16,19 @@
     "events": "رویداد"
   },
   "timeline": {
-    "title": "خط زمانی درگیری"
+    "title": "خط زمانی درگیری",
+    "zoomDay": "ساعتی",
+    "zoomWeek": "هفتگی",
+    "zoomMonth": "ماهیانه",
+    "timepoints": "نقطه زمانی"
   },
   "humanitarian": {
     "title": "پیگیری امداد",
-    "crisis_warning": "هشدار بحران امداد"
+    "crisis_warning": "هشدار بحران امداد",
+    "infrastructure": "آسیب زیرساختی",
+    "incidents": "رویداد",
+    "regionalDistribution": "توزیع منطقوی",
+    "crisis_message": "نسبت تلفات غیرنظامی بیش از ۳۰٪ است."
   },
   "stats": {
     "eventsTotal": "کل رویدادها",

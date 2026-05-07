@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import type { ConflictEvent } from '@/lib/types';
 
 interface HumanitarianStats {
@@ -20,6 +21,7 @@ interface HumanitarianStatsProps {
 }
 
 export function HumanitarianStats({ events }: HumanitarianStatsProps) {
+  const t = useTranslations();
   const [stats, setStats] = useState<HumanitarianStats | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
 
@@ -28,13 +30,11 @@ export function HumanitarianStats({ events }: HumanitarianStatsProps) {
     const civilianFatalities = events.reduce((sum, e) => sum + (e.fatalities.civilians || 0), 0);
     const militaryFatalities = totalFatalities - civilianFatalities;
 
-    // 统计基础设施损毁事件（通过 tags 判断）
     const infraKeywords = ['基础设施', '电网', '医院', '学校', '民居', 'infrastructure', 'power', 'hospital', 'school'];
     const infraDamageEvents = events.filter((e) =>
       e.tags?.some((tag) => infraKeywords.some((kw) => tag.toLowerCase().includes(kw.toLowerCase())))
     ).length;
 
-    // 按区域统计
     const regionStats: Record<string, { fatalities: number; civilian_fatalities: number; events: number }> = {};
     events.forEach((e) => {
       if (!regionStats[e.region]) {
@@ -68,9 +68,9 @@ export function HumanitarianStats({ events }: HumanitarianStatsProps) {
   }
 
   const regionLabels: Record<string, string> = {
-    ukraine: '乌克兰',
-    'middle-east': '中东',
-    'us-iran': '美伊',
+    ukraine: t('regions.ukraine'),
+    'middle-east': t('regions.middleEast'),
+    'us-iran': t('regions.usIran'),
   };
 
   const regionColors: Record<string, string> = {
@@ -79,49 +79,55 @@ export function HumanitarianStats({ events }: HumanitarianStatsProps) {
     'us-iran': 'bg-purple-500',
   };
 
+  const civilianRatio = stats.total_fatalities > 0 
+    ? (stats.civilian_fatalities / stats.total_fatalities * 100).toFixed(1)
+    : '0';
+
   return (
     <div className="space-y-6">
-      {/* 核心指标卡片 */}
+      {/* Key metrics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-gradient-to-br from-red-900/30 to-red-900/10 border border-red-800/30 rounded-lg p-4">
-          <div className="text-sm text-red-400 mb-1">总死亡人数</div>
+          <div className="text-sm text-red-400 mb-1">{t('stats.fatalitiesTotal')}</div>
           <div className="text-2xl font-bold text-red-300">
             {stats.total_fatalities.toLocaleString()}
           </div>
         </div>
 
         <div className="bg-gradient-to-br from-pink-900/30 to-pink-900/10 border border-pink-800/30 rounded-lg p-4">
-          <div className="text-sm text-pink-400 mb-1">平民死亡</div>
+          <div className="text-sm text-pink-400 mb-1">{t('stats.civilianFatalities')}</div>
           <div className="text-2xl font-bold text-pink-300">
             {stats.civilian_fatalities.toLocaleString()}
           </div>
           <div className="text-xs text-muted-foreground mt-1">
-            {((stats.civilian_fatalities / stats.total_fatalities) * 100).toFixed(1)}% of total
+            {civilianRatio}% of total
           </div>
         </div>
 
         <div className="bg-gradient-to-br from-blue-900/30 to-blue-900/10 border border-blue-800/30 rounded-lg p-4">
-          <div className="text-sm text-blue-400 mb-1">军事人员死亡</div>
+          <div className="text-sm text-blue-400 mb-1">{t('stats.militaryFatalities')}</div>
           <div className="text-2xl font-bold text-blue-300">
             {stats.military_fatalities.toLocaleString()}
           </div>
           <div className="text-xs text-muted-foreground mt-1">
-            {((stats.military_fatalities / stats.total_fatalities) * 100).toFixed(1)}% of total
+            {(100 - parseFloat(civilianRatio)).toFixed(1)}% of total
           </div>
         </div>
 
         <div className="bg-gradient-to-br from-orange-900/30 to-orange-900/10 border border-orange-800/30 rounded-lg p-4">
-          <div className="text-sm text-orange-400 mb-1">基础设施损毁</div>
+          <div className="text-sm text-orange-400 mb-1">{t('humanitarian.infrastructure')}</div>
           <div className="text-2xl font-bold text-orange-300">
             {stats.infrastructure_damage_events}
           </div>
-          <div className="text-xs text-muted-foreground mt-1">事件数</div>
+          <div className="text-xs text-muted-foreground mt-1">
+            {t('humanitarian.incidents')}
+          </div>
         </div>
       </div>
 
-      {/* 区域分布 */}
+      {/* Regional distribution */}
       <div className="border rounded-lg p-4">
-        <h3 className="text-sm font-semibold mb-4">区域人道主义状况</h3>
+        <h3 className="text-sm font-semibold mb-4">{t('humanitarian.regionalDistribution')}</h3>
         <div className="space-y-3">
           {Object.entries(stats.regions).map(([region, data]) => (
             <div
@@ -134,21 +140,21 @@ export function HumanitarianStats({ events }: HumanitarianStatsProps) {
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">{regionLabels[region] || region}</span>
                   <span className="text-sm text-muted-foreground">
-                    {data.events} 事件 · {data.fatalities.toLocaleString()} 死亡
+                    {data.events} {t('ai_daily.events')} · {data.fatalities.toLocaleString()} {t('ui.deaths')}
                   </span>
                 </div>
                 <div className="mt-1 h-2 bg-muted rounded-full overflow-hidden">
                   <div
                     className={`h-full ${regionColors[region]} transition-all`}
                     style={{
-                      width: `${Math.min(100, (data.fatalities / stats.total_fatalities) * 100)}%`,
+                      width: `${Math.min(100, stats.total_fatalities > 0 ? (data.fatalities / stats.total_fatalities) * 100 : 0)}%`,
                     }}
                   />
                 </div>
                 {selectedRegion === region && (
                   <div className="mt-2 text-xs text-muted-foreground">
-                    平民死亡: {data.civilian_fatalities.toLocaleString()} (
-                    {((data.civilian_fatalities / data.fatalities) * 100).toFixed(1)}%)
+                    {t('stats.civilianFatalities')}: {data.civilian_fatalities.toLocaleString()} (
+                    {data.fatalities > 0 ? ((data.civilian_fatalities / data.fatalities) * 100).toFixed(1) : 0}%)
                   </div>
                 )}
               </div>
@@ -157,16 +163,15 @@ export function HumanitarianStats({ events }: HumanitarianStatsProps) {
         </div>
       </div>
 
-      {/* 人道主义危机警告 */}
-      {stats.civilian_fatalities / stats.total_fatalities > 0.3 && (
+      {/* Humanitarian crisis warning */}
+      {parseFloat(civilianRatio) > 30 && (
         <div className="bg-red-900/20 border border-red-800/30 rounded-lg p-4">
           <div className="flex items-start gap-3">
             <span className="text-2xl">⚠️</span>
             <div>
-              <h4 className="font-semibold text-red-400">人道主义危机警告</h4>
+              <h4 className="font-semibold text-red-400">{t('humanitarian.crisis_warning')}</h4>
               <p className="text-sm text-muted-foreground mt-1">
-                平民死亡比例超过 30%，表明可能存在针对平民的袭击或附带伤害。
-                建议国际社会关注当地人道主义状况。
+                {t('humanitarian.crisis_message')}
               </p>
             </div>
           </div>

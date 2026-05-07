@@ -16,11 +16,19 @@
     "events": "events"
   },
   "timeline": {
-    "title": "Conflict Timeline"
+    "title": "Conflict Timeline",
+    "zoomDay": "By Hour",
+    "zoomWeek": "By Week",
+    "zoomMonth": "By Month",
+    "timepoints": "timepoints"
   },
   "humanitarian": {
     "title": "Humanitarian Tracking",
-    "crisis_warning": "Humanitarian Crisis Warning"
+    "crisis_warning": "Humanitarian Crisis Warning",
+    "infrastructure": "Infrastructure Damage",
+    "incidents": "incidents",
+    "regionalDistribution": "Regional Distribution",
+    "crisis_message": "Civilian death ratio exceeds 30%, indicating possible attacks on civilians."
   },
   "stats": {
     "eventsTotal": "Total Events",

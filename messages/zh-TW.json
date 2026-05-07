@@ -16,11 +16,19 @@
     "events": "事件"
   },
   "timeline": {
-    "title": "衝突時間軸"
+    "title": "衝突時間軸",
+    "zoomDay": "按小時",
+    "zoomWeek": "按週",
+    "zoomMonth": "按月",
+    "timepoints": "個時間點"
   },
   "humanitarian": {
     "title": "人道主義追蹤",
-    "crisis_warning": "人道主義危機警告"
+    "crisis_warning": "人道主義危機警告",
+    "infrastructure": "基礎設施損毀",
+    "incidents": "事件數",
+    "regionalDistribution": "區域分布",
+    "crisis_message": "平民死亡比例超過30%，表明可能存在針對平民的襲擊或附帶傷害。"
   },
   "stats": {
     "eventsTotal": "事件總數",

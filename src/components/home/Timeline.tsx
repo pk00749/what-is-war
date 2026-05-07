@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
 import type { ConflictEvent } from '@/lib/types';
 
 type ZoomLevel = 'day' | 'week' | 'month';
@@ -17,12 +18,14 @@ interface TimelineGroup {
 }
 
 export function Timeline({ events }: TimelineProps) {
+  const t = useTranslations();
+  const locale = useLocale();
   const [zoom, setZoom] = useState<ZoomLevel>('day');
   const [selectedEvent, setSelectedEvent] = useState<ConflictEvent | null>(null);
   const [visibleRange, setVisibleRange] = useState({ start: 0, end: 20 });
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // 按日期分组
+  // Group events by date
   const groupEvents = (): TimelineGroup[] => {
     const groups: Record<string, ConflictEvent[]> = {};
 
@@ -55,15 +58,27 @@ export function Timeline({ events }: TimelineProps) {
   };
 
   const formatLabel = (date: string, z: ZoomLevel): string => {
-    if (z === 'month') {
-      const [year, month] = date.split('-');
-      return `${year}年${parseInt(month)}月`;
-    }
     const d = new Date(date);
-    if (z === 'week') {
-      return `${d.getMonth() + 1}/${d.getDate()} 周${['日', '一', '二', '三', '四', '五', '六'][d.getDay()]}`;
+    if (z === 'month') {
+      return `${d.getFullYear()}/${d.getMonth() + 1}`;
     }
-    return `${d.getMonth() + 1}/${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2, '0')}`;
+    if (z === 'week') {
+      return `${d.getMonth() + 1}/${d.getDate()}`;
+    }
+    return `${d.getMonth() + 1}/${d.getDate()}`;
+  };
+
+  const getEventDescription = (event: ConflictEvent): string => {
+    const localeMap: Record<string, string> = {
+      'zh-CN': 'description',
+      'zh-TW': 'description_tw',
+      'en': 'description_en',
+      'ru': 'description_ru',
+      'fa': 'description_fa',
+    };
+    const key = localeMap[locale] || 'description';
+    const desc = (event as unknown as Record<string, string>)[key];
+    return desc || event.description;
   };
 
   const groups = groupEvents();
@@ -99,17 +114,21 @@ export function Timeline({ events }: TimelineProps) {
     return colors[type] || 'bg-gray-400';
   };
 
+  const getEventTypeName = (type: string): string => {
+    return t(`eventTypes.${type}`) || type;
+  };
+
   if (events.length === 0) {
     return (
       <div className="text-center py-12 text-muted-foreground">
-        <p>暂无事件数据</p>
+        <p>{t('stats.noData')}</p>
       </div>
     );
   }
 
   return (
     <div className="space-y-4">
-      {/* 缩放控制 */}
+      {/* Zoom control */}
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
           {(['day', 'week', 'month'] as ZoomLevel[]).map((z) => (
@@ -122,18 +141,17 @@ export function Timeline({ events }: TimelineProps) {
                   : 'bg-muted hover:bg-muted/80'
               }`}
             >
-              {z === 'day' ? '按小时' : z === 'week' ? '按周' : '按月'}
+              {z === 'day' ? t('timeline.zoomDay') : z === 'week' ? t('timeline.zoomWeek') : t('timeline.zoomMonth')}
             </button>
           ))}
         </div>
         <div className="text-sm text-muted-foreground">
-          共 {groups.length} 个时间点 · {events.length} 事件
+          {groups.length} {t('timeline.timepoints')} · {events.length} {t('ai_daily.events')}
         </div>
       </div>
 
-      {/* 时间轴 */}
+      {/* Timeline */}
       <div className="relative">
-        {/* 滚动按钮 */}
         {visibleRange.start > 0 && (
           <button
             onClick={scrollLeft}
@@ -151,24 +169,17 @@ export function Timeline({ events }: TimelineProps) {
           </button>
         )}
 
-        {/* 时间轴容器 */}
         <div
           ref={containerRef}
           className="overflow-x-auto pb-4 pt-2"
           style={{ scrollbarWidth: 'thin' }}
         >
           <div className="flex gap-4 min-w-max px-8">
-            {visibleGroups.map((group, idx) => (
+            {visibleGroups.map((group) => (
               <div
                 key={group.date}
                 className="flex flex-col items-center"
               >
-                {/* 连接线 */}
-                {idx < visibleGroups.length - 1 && (
-                  <div className="absolute h-0.5 bg-border w-full top-1/2 left-0 pointer-events-none" style={{ zIndex: -1 }} />
-                )}
-
-                {/* 事件点 */}
                 <div className="relative group">
                   <div
                     className={`w-4 h-4 rounded-full border-2 border-background ${getEventTypeColor(
@@ -176,26 +187,23 @@ export function Timeline({ events }: TimelineProps) {
                     )} cursor-pointer transition-transform hover:scale-125`}
                     onClick={() => setSelectedEvent(group.events[0])}
                   >
-                    {/* Hover 显示详情 */}
                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
                       <div className="bg-background border rounded-lg shadow-lg p-3 text-sm whitespace-nowrap">
                         <div className="font-semibold">{group.label}</div>
                         <div className="text-muted-foreground">
-                          {group.events.length} 事件 · {group.fatalities} 死亡
+                          {group.events.length} {t('ai_daily.events')} · {group.fatalities} {t('ui.deaths')}
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* 日期标签 */}
                 <div className="mt-2 text-xs text-center text-muted-foreground">
                   {group.label}
                 </div>
 
-                {/* 事件数量 */}
                 <div className="text-xs font-medium mt-1">
-                  {group.events.length}事件
+                  {group.events.length}{t('ai_daily.events')}
                 </div>
               </div>
             ))}
@@ -203,7 +211,7 @@ export function Timeline({ events }: TimelineProps) {
         </div>
       </div>
 
-      {/* 事件列表 */}
+      {/* Event list */}
       <div className="border rounded-lg divide-y">
         {events.slice(0, 50).map((event) => (
           <div
@@ -222,7 +230,7 @@ export function Timeline({ events }: TimelineProps) {
                   <span className="text-sm font-medium">{event.location.place}</span>
                   <span className="text-xs text-muted-foreground">{event.date}</span>
                 </div>
-                <p className="text-sm mt-1 line-clamp-2">{event.description}</p>
+                <p className="text-sm mt-1 line-clamp-2">{getEventDescription(event)}</p>
               </div>
               {event.fatalities.confirmed > 0 && (
                 <div className="text-red-500 text-sm font-medium whitespace-nowrap">
@@ -234,7 +242,7 @@ export function Timeline({ events }: TimelineProps) {
         ))}
       </div>
 
-      {/* 详情弹窗 */}
+      {/* Detail modal */}
       {selectedEvent && (
         <div
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
@@ -260,30 +268,30 @@ export function Timeline({ events }: TimelineProps) {
             </div>
             <div className="space-y-3">
               <div>
-                <span className="text-sm font-medium">事件类型：</span>
-                <span className="text-sm text-muted-foreground">{selectedEvent.event_type}</span>
+                <span className="text-sm font-medium">{t('eventTypes._label') || 'Event Type'}:</span>
+                <span className="text-sm text-muted-foreground">{getEventTypeName(selectedEvent.event_type)}</span>
               </div>
               <div>
-                <span className="text-sm font-medium">来源：</span>
+                <span className="text-sm font-medium">{t('tabs.source') || 'Source'}:</span>
                 <span className="text-sm text-muted-foreground">{selectedEvent.source}</span>
               </div>
               {selectedEvent.actors && (
                 <div>
-                  <span className="text-sm font-medium">涉及方：</span>
+                  <span className="text-sm font-medium">{t('eventTypes.actors') || 'Actors'}:</span>
                   <span className="text-sm text-muted-foreground">
                     {selectedEvent.actors.perpetrator.join(', ')}
                   </span>
                 </div>
               )}
               <div>
-                <span className="text-sm font-medium">伤亡：</span>
+                <span className="text-sm font-medium">{t('stats.fatalitiesTotal')}:</span>
                 <span className="text-sm text-red-500">
-                  确认死亡 {selectedEvent.fatalities.confirmed}
-                  {selectedEvent.fatalities.civilians ? ` (平民 ${selectedEvent.fatalities.civilians})` : ''}
+                  {t('ui.deaths')} {selectedEvent.fatalities.confirmed}
+                  {selectedEvent.fatalities.civilians ? ` (${t('stats.civilianFatalities')} ${selectedEvent.fatalities.civilians})` : ''}
                 </span>
               </div>
               <div className="pt-2 border-t">
-                <p className="text-sm">{selectedEvent.description}</p>
+                <p className="text-sm">{getEventDescription(selectedEvent)}</p>
               </div>
               {selectedEvent.tags && selectedEvent.tags.length > 0 && (
                 <div className="flex flex-wrap gap-1 pt-2">
