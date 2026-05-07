@@ -3,6 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { useEffect, useState } from "react";
 import { StatsCards, HotRegions, RecentEvents, WorldMap, CumulativeStats, DateSearch } from "@/components/home/stats";
+import { AIDailySummary } from "@/components/home/AIDailySummary";
 import type { DailySummary, ConflictEvent } from "@/lib/types";
 
 export default function Home() {
@@ -71,6 +72,9 @@ export default function Home() {
           </h1>
           <p className="text-sm text-muted-foreground">{today}</p>
         </div>
+
+        {/* AI 日报组件 */}
+        <AIDailySummary />
 
         {/* 日期查询组件 */}
         <DateSearch selectedDate={selectedDate} onDateChange={setSelectedDate} />

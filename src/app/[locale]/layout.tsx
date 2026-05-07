@@ -80,6 +80,18 @@ export default async function RootLayout({
                 >
                   🇺🇸🇮🇱🇮🇷 {t('nav.usIran')}
                 </a>
+                <a
+                  href={`/${locale}/timeline`}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 transition-colors text-sm font-medium"
+                >
+                  📊 {t('nav.timeline')}
+                </a>
+                <a
+                  href={`/${locale}/humanitarian`}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-pink-500/10 hover:bg-pink-500/20 transition-colors text-sm font-medium"
+                >
+                  🏥 {t('nav.humanitarian')}
+                </a>
               </nav>
             </div>
           </header>
