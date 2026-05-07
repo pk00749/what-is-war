@@ -7,7 +7,20 @@
     "home": "全球概覽",
     "ukraine": "俄烏衝突",
     "middleEast": "巴以衝突",
-    "usIran": "美以伊衝突"
+    "usIran": "美以伊衝突",
+    "timeline": "時間軸",
+    "humanitarian": "人道主義"
+  },
+  "ai_daily": {
+    "title": "AI 今日摘要",
+    "events": "事件"
+  },
+  "timeline": {
+    "title": "衝突時間軸"
+  },
+  "humanitarian": {
+    "title": "人道主義追蹤",
+    "crisis_warning": "人道主義危機警告"
   },
   "stats": {
     "eventsTotal": "事件總數",

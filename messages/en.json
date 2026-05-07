@@ -7,7 +7,20 @@
     "home": "Global Overview",
     "ukraine": "Russia-Ukraine Conflict",
     "middleEast": "Palestine-Israel Conflict",
-    "usIran": "US-Israel-Iran Conflict"
+    "usIran": "US-Israel-Iran Conflict",
+    "timeline": "Timeline",
+    "humanitarian": "Humanitarian"
+  },
+  "ai_daily": {
+    "title": "AI Daily Summary",
+    "events": "events"
+  },
+  "timeline": {
+    "title": "Conflict Timeline"
+  },
+  "humanitarian": {
+    "title": "Humanitarian Tracking",
+    "crisis_warning": "Humanitarian Crisis Warning"
   },
   "stats": {
     "eventsTotal": "Total Events",
