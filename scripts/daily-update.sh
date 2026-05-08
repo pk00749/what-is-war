@@ -10,6 +10,10 @@ echo "=== [$(date)] 开始更新 what-is-war 数据 ==="
 echo "抓取 GDELT 数据..."
 python3 scripts/fetch_gdelt.py 2>&1
 
+# 抓取 ACLED 数据（如果配置了 API Key）
+echo "抓取 ACLED 数据..."
+python3 scripts/fetch_acled.py 2>&1
+
 # 生成每日统计
 echo "生成每日统计..."
 python3 scripts/generate_stats.py 2>&1
